@@ -1,27 +1,41 @@
-console.log("Hello World!");
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(){
-    return Math.floor(Math.random() * 3);
-}
-
-function parseChoice(option){
-    switch (option) {
-        case 0:
-            console.log("Rock");
-            break;
-        case 1:
-            console.log("Paper");
-            break;
-        case 2:
-            console.log("Scissors");
-            break;
-    }
+    return Math.floor(Math.random() * (4 - 1) + 1);
 }
 
 function getHumanChoice(){
     return window.prompt("1. Rock | 2. Paper | 3. Scissors");
 }
 
-parseChoice(getComputerChoice());
+function playRound(computerChoice, humanChoice){
+    if (computerChoice === humanChoice) {
+        console.log("It's a draw!");
+    } else {
+        switch (computerChoice) {
+            case 1:
+                if (humanChoice == 2) {
+                    console.log("You win! Paper beats Rock.");
+                } else {
+                    console.log("You lose! Rock beats Scissors.");
+                }
+                break;
+            case 2:
+                if (humanChoice == 3) {
+                    console.log("You win! Scissors beats Paper.");
+                } else {
+                    console.log("You lose! Paper beats Rock.");
+                }
+                break;
+            case 3:
+                if (humanChoice == 1) {
+                    console.log("You win! Rock beats Scissors.")
+                } else {
+                    console.log("You lose! Scissors beats Paper.")
+                }
+        }
+    }
+}
 
-console.log(getHumanChoice());
+playRound(getComputerChoice(), getHumanChoice());
