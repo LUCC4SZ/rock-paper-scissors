@@ -6,7 +6,15 @@ function getComputerChoice(){
 }
 
 function getHumanChoice(){
-    return window.prompt("1. Rock | 2. Paper | 3. Scissors");
+    let option =  window.prompt("Choose: Rock | Paper | Scissors");
+    option = option.toLowerCase();
+    if (option == "rock") {
+        return 1;
+    } else if (option == "paper") {
+        return 2;
+    } else {
+        return 3;
+    }
 }
 
 function playRound(computerChoice, humanChoice){
@@ -30,12 +38,11 @@ function playRound(computerChoice, humanChoice){
                 break;
             case 3:
                 if (humanChoice == 1) {
-                    console.log("You win! Rock beats Scissors.")
+                    console.log("You win! Rock beats Scissors.");
                 } else {
-                    console.log("You lose! Scissors beats Paper.")
+                    console.log("You lose! Scissors beats Paper.");
                 }
         }
     }
 }
 
-playRound(getComputerChoice(), getHumanChoice());
