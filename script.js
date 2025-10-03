@@ -18,4 +18,10 @@ function parseChoice(option){
     }
 }
 
+function getHumanChoice(){
+    return window.prompt("1. Rock | 2. Paper | 3. Scissors");
+}
+
 parseChoice(getComputerChoice());
+
+console.log(getHumanChoice());
