@@ -48,27 +48,68 @@ function playRound(computerChoice, humanChoice){
     }
 }
 
-function playGame() {
+const body = document.querySelector("body");
+
+const rockBtn = document.createElement("button");
+const paperBtn = document.createElement("button");
+const scissorBtn = document.createElement("button");
+
+rockBtn.innerText = "Rock";
+paperBtn.innerText = "Paper";
+scissorBtn.innerText = "Scissors";
+
+const btnList = document.createElement("div");
+const scoreDisplayer = document.createElement("div");
+
+btnList.appendChild(rockBtn);
+btnList.appendChild(paperBtn);
+btnList.appendChild(scissorBtn);
+
+let playerScoreMessage = document.createElement("p");
+let computerScoreMessage = document.createElement("p");
+
+playerScoreMessage.innerText = "Player score: ";
+computerScoreMessage.innerText = "Computer score: ";
+
+scoreDisplayer.appendChild(playerScoreMessage);
+scoreDisplayer.appendChild(computerScoreMessage);
+
+body.appendChild(btnList);
+body.appendChild(scoreDisplayer);
+
+rockBtn.addEventListener("click", () => {
+    const result = playRound(getComputerChoice(), 1);
+    let playerScore = 0;
     let computerScore = 0;
-    let humanScore = 0;
-
-    for (let i = 1; i <=5; i++) {
-        let computerChoice = getComputerChoice();
-        
-        let humanChoice = getHumanChoice();
-        
-        let result = playRound(computerChoice, humanChoice);
-        
-        if (result == 1) {
-            humanScore++;
-        } else if (result == 2){
+    switch (result) {
+        case 0:
+            alert("It's a draw!");
+            break;
+        case 1:
+            playerScore++;
+            break;
+        case 2:
             computerScore++;
-        }
-        
-        console.log("Computer: " + computerScore);
-        console.log("You: " + humanScore);
+            break;
     }
+})
 
-}
 
-playGame();
+// rockBtn.addEventListener("click", () => {
+//     const result = playRound(getComputerChoice(), 1);
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     if (result === 0) {
+//         alert("It's a draw!");
+//     } else if (result === 1) {
+//         playerScore++;
+//         playerScoreMessage+= `${playerScore}`;
+//     } else {
+//         computerScore++;
+//         computerScoreMessage+= `${computerScore}`;
+//     }
+// });
+
+// paperBtn.addEventListener("click", playRound(getComputerChoice(), 2));
+// scissorBtn.addEventListener("click", playRound(getComputerChoice(), 3));
+
