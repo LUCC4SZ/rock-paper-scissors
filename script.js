@@ -2,18 +2,6 @@ function getComputerChoice(){
     return Math.floor(Math.random() * 3 + 1);
 }
 
-function getHumanChoice(){
-    let option =  window.prompt("Choose: Rock | Paper | Scissors");
-    option = option.toLowerCase();
-    if (option == "rock") {
-        return 1;
-    } else if (option == "paper") {
-        return 2;
-    } else {
-        return 3;
-    }
-}
-
 function playRound(computerChoice, humanChoice){
     if (computerChoice === humanChoice) {
         console.log("It's a draw!");
@@ -67,23 +55,28 @@ btnList.appendChild(scissorBtn);
 
 let playerScoreMessage = document.createElement("p");
 let computerScoreMessage = document.createElement("p");
+let drawCounterMessage = document.createElement("p");
 
-playerScoreMessage.innerText = "Player score: ";
-computerScoreMessage.innerText = "Computer score: ";
+let playerScore = 0;
+let computerScore = 0;
+let drawCounter = 0;
+
+playerScoreMessage.innerText = `Player score: ${playerScore}`;
+computerScoreMessage.innerText = `Computer score: ${computerScore}`;
+drawCounterMessage.innerText = `Total draws: ${drawCounter}`;
 
 scoreDisplayer.appendChild(playerScoreMessage);
 scoreDisplayer.appendChild(computerScoreMessage);
+scoreDisplayer.appendChild(drawCounterMessage);
 
 body.appendChild(btnList);
 body.appendChild(scoreDisplayer);
 
 rockBtn.addEventListener("click", () => {
     const result = playRound(getComputerChoice(), 1);
-    let playerScore = 0;
-    let computerScore = 0;
     switch (result) {
         case 0:
-            alert("It's a draw!");
+            drawCounter++;
             break;
         case 1:
             playerScore++;
@@ -92,24 +85,44 @@ rockBtn.addEventListener("click", () => {
             computerScore++;
             break;
     }
-})
+    drawCounterMessage.innerText = `Total draws: ${drawCounter}`;
+    playerScoreMessage.innerText = `Player score: ${playerScore}`;
+    computerScoreMessage.innerText = `Computer score: ${computerScore}`;
+});
 
+paperBtn.addEventListener("click", () => {
+    const result = playRound(getComputerChoice(), 2);
+    switch (result) {
+        case 0:
+            drawCounter++;
+            break;
+        case 1:
+            playerScore++;
+            break;
+        case 2:
+            computerScore++;
+            break;
+    }
+    drawCounterMessage.innerText = `Total draws: ${drawCounter}`;
+    playerScoreMessage.innerText = `Player score: ${playerScore}`;
+    computerScoreMessage.innerText = `Computer score: ${computerScore}`;
+});
 
-// rockBtn.addEventListener("click", () => {
-//     const result = playRound(getComputerChoice(), 1);
-//     let playerScore = 0;
-//     let computerScore = 0;
-//     if (result === 0) {
-//         alert("It's a draw!");
-//     } else if (result === 1) {
-//         playerScore++;
-//         playerScoreMessage+= `${playerScore}`;
-//     } else {
-//         computerScore++;
-//         computerScoreMessage+= `${computerScore}`;
-//     }
-// });
-
-// paperBtn.addEventListener("click", playRound(getComputerChoice(), 2));
-// scissorBtn.addEventListener("click", playRound(getComputerChoice(), 3));
+scissorBtn.addEventListener("click", () => {
+    const result = playRound(getComputerChoice(), 3);
+    switch (result) {
+        case 0:
+            drawCounter++;
+            break;
+        case 1:
+            playerScore++;
+            break;
+        case 2:
+            computerScore++;
+            break;
+    }
+    drawCounterMessage.innerText = `Total draws: ${drawCounter}`;
+    playerScoreMessage.innerText = `Player score: ${playerScore}`;
+    computerScoreMessage.innerText = `Computer score: ${computerScore}`;
+});
 
