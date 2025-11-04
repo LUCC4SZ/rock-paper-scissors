@@ -72,6 +72,16 @@ scoreDisplayer.appendChild(drawCounterMessage);
 body.appendChild(btnList);
 body.appendChild(scoreDisplayer);
 
+function checkScore(pScore, cScore) {
+    if (pScore === 5 || cScore === 5) {
+        if (pScore === 5) {
+            alert("Player wins!");
+        } else {
+            alert("Computer wins!");
+        }
+    }
+}
+
 rockBtn.addEventListener("click", () => {
     const result = playRound(getComputerChoice(), 1);
     switch (result) {
@@ -88,6 +98,7 @@ rockBtn.addEventListener("click", () => {
     drawCounterMessage.innerText = `Total draws: ${drawCounter}`;
     playerScoreMessage.innerText = `Player score: ${playerScore}`;
     computerScoreMessage.innerText = `Computer score: ${computerScore}`;
+    checkScore(playerScore, computerScore);
 });
 
 paperBtn.addEventListener("click", () => {
@@ -106,6 +117,7 @@ paperBtn.addEventListener("click", () => {
     drawCounterMessage.innerText = `Total draws: ${drawCounter}`;
     playerScoreMessage.innerText = `Player score: ${playerScore}`;
     computerScoreMessage.innerText = `Computer score: ${computerScore}`;
+    checkScore(playerScore, computerScore);
 });
 
 scissorBtn.addEventListener("click", () => {
@@ -124,5 +136,5 @@ scissorBtn.addEventListener("click", () => {
     drawCounterMessage.innerText = `Total draws: ${drawCounter}`;
     playerScoreMessage.innerText = `Player score: ${playerScore}`;
     computerScoreMessage.innerText = `Computer score: ${computerScore}`;
+    checkScore(playerScore, computerScore);
 });
-
